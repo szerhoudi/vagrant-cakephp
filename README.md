@@ -28,11 +28,14 @@ git clone https://github.com/szerhoudi/vagrant-cakephp.git
 cd vagrant-cakephp
 ```
 
-Now we need to setup the vagrant installation. This is pretty easy:
+Now we need to setup the vagrant installation:
 
 ```bash
+vagrant plugin install vagrant-vbguest
 vagrant up
 ```
+
+`vagrant-vbguest` is a Vagrant plugin which automatically installs the host's VirtualBox Guest Additions on the guest system.
 
 It may take a bit to download the Vagrant box, but once that is done, you will be prompted for your laptop password. This is so we can properly expose the IP of the vagrant instance to your machine. Type in your password and let it continue running.
 
