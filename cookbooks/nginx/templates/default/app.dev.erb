@@ -1,0 +1,39 @@
+server {
+  listen 80;
+  server_name <%= @server_name %>.dev;
+  root /vagrant/<%= @server_name %>/app/webroot/;
+  access_log /var/log/nginx/<%= @server_name %>-access.log;
+
+  index index.php index.html;
+
+  location ~ /\.ht {
+    deny all;
+  }
+
+  location ~ \.php$ {
+    fastcgi_pass unix:/var/run/php5-fpm.sock;
+    include fastcgi_params;
+  }
+
+  location / {
+    if (!-f $document_root/index.php) {
+      return 503;
+    }
+
+    try_files $uri $uri/ /index.php?$args;
+    expires max;
+    access_log on;
+  }
+
+  error_page 503 @fallback;
+  location @fallback {
+    root /etc/nginx/app;
+    try_files /index.html =503;
+  }
+}
+
+server {
+  listen 80;
+  server_name www.<%= @server_name %>.dev;
+  rewrite ^ http://<%= @server_name %>.dev$uri permanent;
+}

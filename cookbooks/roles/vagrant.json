@@ -1,0 +1,37 @@
+{
+  "name": "vagrant",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "vagrant instance, responsible for deploying a vm for a developer",
+  "override_attributes": {
+    "box_name": "vagrant",
+    "mysql": {
+      "databases": {
+        "database_name": true,
+        "test_database_name": true
+      },
+      "server_root_password": "root",
+      "users": {
+        "user": "password"
+      }
+    },
+    "nginx": {
+      "worker_connections": 768,
+      "keepalive_timeout": 2
+    }
+  },
+  "default_attributes": {},
+  "run_list": [
+    "recipe[system::update]",
+    "recipe[hostname::default]",
+    "recipe[git::install]",
+    "recipe[percona::install]",
+    "recipe[postgresql::install]",
+    "recipe[redis::install]",
+    "recipe[memcached::install]",
+    "recipe[nginx::server]",
+    "recipe[ruby::install]",
+    "recipe[php::install]",
+    "recipe[cakephp::setup]"
+  ]
+}
