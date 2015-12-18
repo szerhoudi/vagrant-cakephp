@@ -1,3 +1,5 @@
+# Vagrant CakePHP 
+
 Vagrant CakePHP creates a Vagrant installation for CakePHP using Chef with the following features:
 
 - Ubuntu 14.04 LTS Trusty Tahr
@@ -28,6 +30,15 @@ git clone https://github.com/szerhoudi/vagrant-cakephp.git
 cd vagrant-cakephp
 ```
 
+#### Custom App Name
+
+The default name of the app is `app`. You can access the site using a custom domain name: `app.dev`.
+To modify your app name, edit the following files:
+
+    Vagrantfile - line 60 : config.vm.hostname = "customapp.dev",
+	cookbooks/nginx/attributes/default.rb - line 18 : default['nginx']['server_name'] = 'customapp'
+
+
 Now we need to setup the vagrant installation:
 
 ```bash
@@ -41,24 +52,16 @@ It may take a bit to download the Vagrant box, but once that is done, you will b
 
 Once it is done, browse to `http://192.168.13.37/` in your browser, and you should have some sort of `It works!` page! At this point you can set your virtualhosts to point at the instance for maximum win.
 
-#### Custom Domain Name
-
-If you want to access the site using a custom domain name, edit your `/etc/hosts` file to have the following line:
-
-    192.168.13.37 www.app.dev app.dev
-
-If you are the root user on your box, you can do something like:
-
-```bash
-echo "192.168.13.37 www.app.dev app.dev" >> "/etc/hosts"
-```
-
 #### Database Access
 
 MySQL is available at `192.168.13.37:3306` with either of the following credentials:
 
 - `root:root`
 - `user:password`
+
+For an SSH connection (`SSH user:vagrant`), use the Private Key found in :
+
+- `vagrant-cakephp/.vagrant/machines/default/virtualbox/private_key`
 
 Postgres is available at `192.168.13.37:5432` with either of the following credentials:
 

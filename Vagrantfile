@@ -54,13 +54,10 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.forward_agent = true
-#  config.ssh.private_key_path = [
-#      ".vagrant/machines/default/virtualbox/private_key"
-#    ]
   config.vbguest.auto_update = false
   config.vm.box = "bento/ubuntu-14.04"
   config.vm.network "private_network", ip: "192.168.13.37"
-  config.vm.hostname = "mydiveo.dev"
+  config.vm.hostname = "app.dev"
   config.vm.synced_folder ".", "/vagrant"
 
   config.vm.provider "virtualbox" do |v, override|

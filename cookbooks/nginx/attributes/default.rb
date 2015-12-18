@@ -15,4 +15,4 @@ default['nginx']['gzip_types'] = [
   "image/jpeg"
 ]
 
-default['nginx']['server_name'] = 'mydiveo'
+default['nginx']['server_name'] = 'app'
