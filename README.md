@@ -21,7 +21,7 @@ Vagrant CakePHP creates a Vagrant installation for CakePHP using Chef with the f
 
 ## Installation
 
-Download and install both VirtualBox and Vagrant for your particular operating system. Should only take a few minutes on a DSL connection.
+Download and install both VirtualBox and Vagrant for your particular operating system.
 
 Once those are downloaded, open up a terminal. We'll need to clone this repository and setup vagrant:
 
@@ -32,11 +32,11 @@ cd vagrant-cakephp
 
 #### Custom App Name
 
-The default name of the app is `app`. You can access the site using a custom domain name: `app.dev`.
-To modify your app name, edit the following files:
+At the end of the install you will be accessing your CakePHP app using either `http://192.168.13.37/` or a custom domain name: `app.dev`.
+To customize your domain name, please edit the following files:
 
-    Vagrantfile - line 60 : config.vm.hostname = "customapp.dev",
-	cookbooks/nginx/attributes/default.rb - line 18 : default['nginx']['server_name'] = 'customapp'
+    Vagrantfile - line 60 : config.vm.hostname = "your-custom-app.dev",
+	cookbooks/nginx/attributes/default.rb - line 18 : default['nginx']['server_name'] = 'your-custom-app'
 
 
 Now we need to setup the vagrant installation:
@@ -51,6 +51,13 @@ vagrant up
 It may take a bit to download the Vagrant box, but once that is done, you will be prompted for your laptop password. This is so we can properly expose the IP of the vagrant instance to your machine. Type in your password and let it continue running.
 
 Once it is done, browse to `http://192.168.13.37/` in your browser, and you should have some sort of `It works!` page! At this point you can set your virtualhosts to point at the instance for maximum win.
+
+#### Custom Domain Name
+
+If you want to access the site using a custom domain name, edit your `/etc/hosts` file to have the following line:
+
+    192.168.13.37 www.app.dev app.dev or 192.168.13.37 www.your-custom-app.dev your-custom-app.dev if you change the app name as shown above
+
 
 #### Database Access
 
