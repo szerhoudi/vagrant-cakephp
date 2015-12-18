@@ -56,7 +56,8 @@ Once it is done, browse to `http://192.168.13.37/` in your browser, and you shou
 
 If you want to access the site using a custom domain name, edit your `/etc/hosts` file to have the following line:
 
-    192.168.13.37 www.app.dev app.dev or 192.168.13.37 www.your-custom-app.dev your-custom-app.dev if you change the app name as shown above
+    192.168.13.37 www.app.dev app.dev 
+    or 192.168.13.37 www.your-custom-app.dev your-custom-app.dev if you change the app name as shown above
 
 
 #### Database Access
